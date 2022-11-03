@@ -1,0 +1,121 @@
+<app-menu></app-menu>
+<div class="container-fluid col-auto">
+  <div class="row flex-nowrap">
+    <div class="col-auto col-md-3 col-xl-2 bg-dark" data-spy="scrollarea" data-target="#sidenav" data-offset="20">
+      <div class="d-flex flex-column align-items-center align-items-sm-start pt-2 text-white min-vh-100" >
+        <div id="sidenav" class="d-flex flex-column align-items-stretch flex-shrink-0 text-white bg-dark" style="width: 200x;">
+          <span *ngIf="isAdmin&&(!editSubskill)" class="text-center"><button class="btn btn-outline-secondary me-md-2 btn-md "
+            type="button" (click)="subskillEditorMode()">Edit Subskills</button></span>
+
+          <div  class="list-group list-group-flush border-bottom scrollarea bg-dark "  *ngFor="let subSkill of subSkills">
+            <a  id="{{subSkill.skillId}}" (click)='getContent(subSkill.skillId)' class="list-group-item list-group-item-action active py-3 lh-tight" aria-current="true">
+              <div class="d-flex w-100 align-items-center justify-content-between" *ngIf="!editSubskill">
+                <span class="mb-1"  ><small>{{subSkill.skillName}}</small></span>
+              </div>
+              <div class="d-flex w-100 align-items-center justify-content-between" *ngIf="editSubskill">
+                <span class="mb-1"  ><textarea [(ngModel)]="subSkill.skillName">{{subSkill.skillName}}</textarea></span>
+                <span class="text-center"><button class="btn btn-outline-success me-md-2 btn-md "
+                  type="button" (click)="updateSubskill(subSkill.skillId,subSkill.skillName)">Submit</button></span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-10 py-3">
+      <div class="text-right">
+        <span *ngIf="isAdmin&&(!inEditorMode)"><button class="btn btn-outline-secondary me-md-2 btn-md  pull-right"
+            type="button" (click)="editorMode()">Edit Contents</button></span>
+      </div>
+      <div *ngFor="let content of contentsData">
+        <div *ngIf="enableEditor">
+          <div class="border" id="editor">
+            <ckeditor [(ngModel)]="content.skillContents">
+              <ckbutton [name]="'saveButton'" [command]="'saveCmd'" (click)="save()" [icon]="'save.png'"
+                [label]="'Save Document'" [toolbar]="'clipboard,1'">
+              </ckbutton>
+            </ckeditor>
+          </div>
+          <div *ngIf="addVideo">
+            <div class="form-group purple-border">
+              <label>Insert video url below!</label>
+              <textarea class="form-control" id="exampleFormControlTextarea4" rows="3"
+                [(ngModel)]="videoLink"></textarea>
+            </div>
+          </div>
+          <div class="pull-left ">
+            <button class="btn btn-outline-secondary me-md-2 p-2 mt-2" type="submit" (click)="includeVideo()">Include
+              video Url
+            </button>
+          </div>
+          <div class="pull-right pb-5">
+            <button type="button" class="btn btn-outline-success p-2 mt-2" data-toggle="modal"
+              data-target="#mySaveModal" (click)="showSaveChangesModal()">Save changes</button>
+          </div>
+        </div>
+        <div *ngIf="!enableEditor">
+          <div [innerHTML]="content.skillContents"></div>
+        </div>
+        <div *ngIf='content.imagesLink != null'>
+          <span>
+            <img class="img-responsive" src="{{content.imagesLink}}" width="50%" height="60%">
+          </span>
+        </div>
+        <div *ngIf='content.videosLink != null'>
+          <span>
+            <iframe class="e2e-iframe-trusted-src" width="735" height="393" [src]="content.videosLink | mySafe"
+              title="DotNet Program Execution" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
+          </span>
+        </div>
+        <div class="text-right">
+          <span *ngIf="isAdmin&&(!inEditorMode)"><button class="btn btn-outline-secondary me-md-2 btn-md  pull-right"
+              type="button" (click)="editorMode()">Edit Contents</button></span>
+        </div>
+      </div>
+      <div *ngIf="isAdmin&&(inEditorMode)">
+        <button class="btn btn-outline-danger me-md-2 p-2 mt-2 btn-md  pull-right" data-toggle="modal"
+          data-target="#exitModall" type="button" (click)="showExitModal()">Exit edit
+          mode</button>
+      </div>
+      </div>
+  </div>
+</div>
+<!-- The Modal -->
+<div class="modal" id="exitModall">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal body -->
+      <div class="modal-body">
+        Exit
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="exitEditorCancel()">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="exitEditorSave()">Save & Exit</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="exitEditorNoSave()">Exit</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!-- The saveModal -->
+<div class="modal" id="mySaveModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal body -->
+      <div class="modal-body">
+        Save changes
+      </div>
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-success" data-dismiss="modal" (click)="save()">Save</button>
+        <button type="button" class="btn btn-outline-warning" data-dismiss="modal"
+          (click)="hideSaveChangesModal()">Cancel</button>
+      </div>
+
+    </div>
+  </div>
+</div>

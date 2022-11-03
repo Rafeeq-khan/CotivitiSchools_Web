@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light fw-bold fs-5" >{{skillName}}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-32mb-lg-0" >
+        <li class="nav-item" *ngFor="let skill of skills">
+          <a class="nav-link active  text-light" aria-current="page"  href="skillcontents/{{skill.skillId}}?mid={{mid}}">{{skill.skillName}}</a>
+        </li>
+        <div class="nav-item" id="skill" *ngIf="selectedSkill">
+          <a class="nav-link fw-bold fs-6 text-light " >{{selectedSkill}}</a>
+      </div>
+      </ul>
+
+      <!---
+      <span class="navbar-text">
+        Navbar text with an inline element
+      </span>-->
+    </div>
+  </div>
+</nav>

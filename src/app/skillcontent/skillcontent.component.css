@@ -1,0 +1,26 @@
+
+
+#editor:hover {
+  border: 1px solid lightblue !important;
+  box-shadow: 0 0 0 0.2rem rgba(81, 118, 199, 0.25) !important;
+}
+
+.col.md-3 {
+  width: 20%;
+}
+
+.list-group-item.active {
+  z-index: 2;
+  color: var(--bs-list-group-active-color);
+  background-color: #212529 !important;
+  border-color: #000 !important;
+}
+
+.list-group-item.active:hover {
+  z-index: 2;
+  cursor: pointer !important;
+  color: black !important;
+  background-color: #96D4D4 !important;
+  border-color: #000 !important;
+}
+

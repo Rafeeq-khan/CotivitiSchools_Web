@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\.angular",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\skillcontent"
+  ],
+  "SelectedNode": "\\src\\app\\skillcontent\\skillcontent.component.html",
+  "PreviewInSolutionExplorer": false
+}

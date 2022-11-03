@@ -1,0 +1,71 @@
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="home">
+      <img src="assets/images/Varw.jpeg" alt="Barnd Logo" width="65" height="50" class="d-inline-block align-text-top">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="font-family-Roboto">
+        <ul class="navbar-nav font-family-Roboto">
+          <li class="nav-item dropdown" type="btn">
+            <a class="nav-link dropdown-toggle fw-bolder fs-4" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tutorials
+            </a>
+            <ul class="dropdown-menu" >
+              <li><a class="dropdown-item fw-bold fs-5" id="1" (click)="setMenu('Languages')"  href="menu?mid=1">Languages</a></li>
+              <li><a class="dropdown-item fw-bold fs-5" id="2" (click)="setMenu('Web Development')" href="menu?mid=2">Web Development</a></li>
+              <li><a class="dropdown-item fw-bold fs-5" id="3" (click)="setMenu('Technologies')" href="menu?mid=3">Technologies</a></li>
+              <li><a class="dropdown-item fw-bold fs-5" id="4" (click)="setMenu('Database Tutorials')" href="menu?mid=4">Database Tutorials</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navbar-nav ms-auto visible" *ngIf="!isLoggedIn">
+      <button class="btn btn-secondary me-md-2 btn-md" routerLink="register" type="button">Register</button>
+      <button class="btn btn-dark btn-md "  routerLink="login" type="button">Login</button>
+    </div>
+    <div class="visible">
+      <div class="font-family-Roboto" *ngIf="isLoggedIn" >
+        <ul class="navbar-nav font-family-Roboto">
+
+          <li class="btn btn-md border-warning rounded-pil dropdown" type="btn">
+
+            <a class="nav-link  fw-bolder fs-6" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{isLoggedIn === true ? presentUser : 'Sign In'}}
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item fw-bold fs-6" id="1" href="profile">View Profile</a></li>
+              <li><a class="dropdown-item fw-bold fs-6" id="2" (click)="logout()">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+<!--<div class="collapse navbar-collapse " id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto navbar-right-top">
+          <li class="nav-item dropdown nav-user">
+              <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="https://img.icons8.com/dusk/100/000000/user-female-circle.png" alt="" class="user-avatar-md rounded-circle"></a>
+              <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                  <div class="nav-user-info">
+                      <h5 class="mb-0 text-white nav-user-name">Tikoha Samga</h5>
+                      <span class="status"></span><span class="ml-2">Available</span>
+                  </div>
+                  <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                  <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                  <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+              </div>
+          </li>
+      </ul>
+    </div>-->

@@ -1,0 +1,7 @@
+.navbar{
+  color: whitesmoke !important;
+}
+.nav-link:hover{
+  background-color: #96D4D4!important;
+  color: black!important;
+}

@@ -1,0 +1,25 @@
+
+
+.dropdown-item {
+  color: rgb(55, 109, 131)!important;
+}
+.dropdown-item:hover {
+  background-color: #96D4D4!important;
+  color: rgb(55, 109, 131)!important;
+}
+.nav-link{
+  color: rgb(55, 109, 131)
+}
+.nav-link:hover{
+  background-color: #96D4D4!important;
+  color: rgb(55, 109, 131)
+}
+
+.btn-secondary:hover{
+  background-color: #D9EEE1!important;
+  color: black;
+}
+.btn-dark:hover{
+  background-color: #96D4D4!important;
+  color: black;
+}
